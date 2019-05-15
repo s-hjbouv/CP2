@@ -1,13 +1,26 @@
 #include <iostream>
+#include <fstream>
 
-int multiply(int arg1, int arg2)
-{
-  return arg1*arg2;
-}
+int main(int args, char** argv){
+std::ifstream in("input.txt"); // Liste mit Daten einlesen
+int var2;
+std::string var1;
+float a=1.8;
+float b=32;
 
-int main(int argc, char** argv){
-  int product = multiply(20,10);
-  std::cout << "product is " << product << std::endl;
-  return 0;
+for(int i=0; i<5; i++){ // Loop basteln
+in >>var1;
+in >>var2;
+if (var1 == "F"){ // Unterscheidung, ob in Liste F oder C vorne steht
+    double A = var2*a+b; // Celsius in Fahrenheit
+    std::cout << var2 << " Grad Celsius sind " << A << " Grad Fahrenheit " << std::endl;
 }
+else if (var1 == "C"){
+    double B = (var2-b)*a; // Fahrenheit in Celsius
+    std::cout << var2 << " Grad Fahrenheit sind " << B << " Grad Celsius" << std::endl; 
+}
+else {
+  std::cout << var2 << " ist weder Grad Fahrenheit noch Celsius. Bitte wähle eine andere Temperatur." << std::endl;
+} 
+}}
 
