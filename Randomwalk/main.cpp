@@ -12,15 +12,20 @@ int main(){
 
  std::vector<int> Teilchenpositionen(10000000,0); //Teilchenzahl und ihre Positionen
 
-//Vektoren für die Zeitschritte, Wegschritte und x**2  
+//Vektoren für die Zeitschritte, Wegschritte und x**2; Zeitpositionen, Wegschrittpositionen; Zähler  
   std::vector<double> Zeitschritt(10);
   std::vector<double> Wegschritt(Teilchenpositionen.size());
   std::vector<double> M1(10); //Vektor für erstes Moment
   std::vector<double> M2(10); //Vektor für zweites Moment
   std::vector<std::string> o(M1.size());
+ // std::vector<double> Zeitpositionen
+  std::vector<double> Wegschrittpositionen;
+  std::vector<double> Counter(20,0);
 
 std::mt19937 gen; //Zufallszahl definieren
 gen.seed(5); //Beginn Zufallszahlen
+
+//------------------------------------------------------------------------------
 
 // Schleife über Zeitschritte  
 for(int t =0; t< Zeitschritt.size(); t++) {
@@ -39,7 +44,8 @@ for(int t =0; t< Zeitschritt.size(); t++) {
       Wegschritt[i] = Teilchenpositionen[i]--;
       }
      // Zeitschritt.push_back(t);  //neue Werte an Vektor hängen
-     // Wegschritt.push_back(Wegschritt[i]);  
+     // Wegschritt.push_back(Wegschritt[i]);
+     Wegschrittpositionen.push_back(Wegschritt[i]);  
     }
 
     // 1.Moment: Aufsummieren der Wegschritte pro Zeiteinheit
@@ -47,29 +53,59 @@ for(int t =0; t< Zeitschritt.size(); t++) {
       x1+= Wegschritt[m]; //Aufsummieren
     }  
     x1a = x1/Teilchenpositionen.size();
-    std::cout <<" 1. Moment: " << x1/Teilchenpositionen.size() <<std::endl;
+   // std::cout <<" 1. Moment: " << x1/Teilchenpositionen.size() <<std::endl;
 
     // 2.Moment: Aufsummieren der Wegschritte zum Quadrat minus Mittelwert(1.Moment) pro Zeiteinheit
     for (int m=0; m < Wegschritt.size(); m++){
       x2+= (Wegschritt[m]-x1a)*(Wegschritt[m]-x1a);
     }  
-    std::cout << "2. Moment: " << x2/Teilchenpositionen.size() << std::endl;
+   // std::cout << "2. Moment: " << x2/Teilchenpositionen.size() << std::endl;
     
     M1.push_back(x2/Teilchenpositionen.size());
     M2.push_back(x1/Teilchenpositionen.size());
 
 }
+// M1 und M2 mit Python geplottet
 
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
 // 1.Moment und 2.Moment pro Zeitschritt in Textdatei		//irgendwas ist da fehlerhaft
-std::ofstream output_file("output.txt");
+/*std::ofstream output_file("output.txt");
 for (int i=0; i<M1.size(); i++ ){
   o[i] = std::to_string(M1[i])+" "+std::to_string(M2[i]);
   output_file << o[i] << std::endl;
 }
-
- // D über Regression berechnen: 2D = 0.999682
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+*/
+ // D über Regression berechnen: 2D = 0.999682  Regression mit Excel
  // -- D = 0.499841
  // 2.Moment = 2D*Zeitschritt
+ // Zeitschritt: 1s
+
+//--------------------------------------------------
+
+
+// Schleife zum Zählen der Anzahl der Teilchenpositionen
+for(int k = 0; k< Wegschrittpositionen.size(); k++){
+  for (int i = -10; i<10; i++){
+    if (i == Wegschrittpositionen[k]){
+      Counter[i+10]++;
+      }
+  }
+}
+
+// Zähler ausgeben
+for (int i = 0; i< Counter.size(); i++){
+std::cout << i << " : " << Counter[i] << std::endl;
+}
+
+//Gaußverteilung geplottet mit Canopy
+//
+
+
+
+
 
 
 
