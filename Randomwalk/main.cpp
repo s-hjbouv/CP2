@@ -19,7 +19,6 @@ int main(){
   std::vector<double> M2(10); //Vektor für zweites Moment
   std::vector<std::string> o(M1.size());
  // std::vector<double> Zeitpositionen
-  std::vector<double> Wegschrittpositionen;
   std::vector<double> Counter(20,0);
 
 std::mt19937 gen; //Zufallszahl definieren
@@ -44,8 +43,7 @@ for(int t =0; t< Zeitschritt.size(); t++) {
       Wegschritt[i] = Teilchenpositionen[i]--;
       }
      // Zeitschritt.push_back(t);  //neue Werte an Vektor hängen
-     // Wegschritt.push_back(Wegschritt[i]);
-     Wegschrittpositionen.push_back(Wegschritt[i]);  
+     // Wegschritt.push_back(Wegschritt[i]); 
     }
 
     // 1.Moment: Aufsummieren der Wegschritte pro Zeiteinheit
@@ -69,15 +67,9 @@ for(int t =0; t< Zeitschritt.size(); t++) {
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
-// 1.Moment und 2.Moment pro Zeitschritt in Textdatei		//irgendwas ist da fehlerhaft
-/*std::ofstream output_file("output.txt");
-for (int i=0; i<M1.size(); i++ ){
-  o[i] = std::to_string(M1[i])+" "+std::to_string(M2[i]);
-  output_file << o[i] << std::endl;
-}
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-*/
+//
  // D über Regression berechnen: 2D = 0.999682  Regression mit Excel
  // -- D = 0.499841
  // 2.Moment = 2D*Zeitschritt
@@ -87,9 +79,9 @@ for (int i=0; i<M1.size(); i++ ){
 
 
 // Schleife zum Zählen der Anzahl der Teilchenpositionen
-for(int k = 0; k< Wegschrittpositionen.size(); k++){
+for(int k = 0; k< Teilchenpositionen.size(); k++){
   for (int i = -10; i<10; i++){
-    if (i == Wegschrittpositionen[k]){
+    if (i == Teilchenpositionen[k]){
       Counter[i+10]++;
       }
   }
