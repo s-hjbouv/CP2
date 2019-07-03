@@ -1,0 +1,90 @@
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+//y''(t)=g/R*siny(t) mit Pendelläaege R=1
+//y''(t)=-9.81*siny(t)
+//y(t=0)=y0
+//y'(t=0)=0
+
+int main(){
+
+//Vektoren definieren
+std::vector<double> vdy;
+std::vector<double> vy;
+std::vector<double> vy0{0,0.1963,0.3927,M_PI_4,M_PI_2,2.3562}; //Winkel:0,1/16*pi, 1/8*pi, 1/4*pi, 1/2*pi, 3/4*pi
+
+//Schrittweite
+double h=0.01;
+double g=-9.81;
+
+//Schleife fuer verschiedene Anfangswinkel y0
+for (int i=0; i<vy0.size(); i++){
+    std::cout<<"Anfangswinkel: "<<vy0[i]<<std::endl;
+    std::cout<<"Auslenkung y"<<std::endl;
+    //Schleife ueber alle Zeitschritte
+    //Zeitspanne 30 s
+
+    vdy.clear ();   vdy.push_back (0.0);
+    vy.clear ();    vy.push_back(vy0[i]);
+    for (int j=0; j<100; j++){
+	double k1=h/2.0*g*sin(vy[j]);
+	double k2=h/2.0*g*sin(vy[j]*h/2*vdy[j]+h/4*k1);
+	double k4=h/2.0*g*sin(vy[j]+h*vdy[j]+h*k2);
+	double dy=vdy[j]+1.0/3.0*(k1+4*k2+k4);
+	vdy.push_back(dy);
+	double y=vy[j]+h*vdy[j]+h/3.0*(k1+2*k2);
+	vy.push_back(y);
+	
+	//Vektoren Ausgeben
+    	std::cout<<vy[j]<<std::endl;
+
+    }
+    //output files
+    char filename[64];
+    strcpy (filename, "phase.");
+    char *pos = strchr (filename, '.');
+    sprintf (pos+1, "%1d", i);
+	ofstream y0 (filename);
+	for (int i=0;i=100;i++){
+    	y0<<vy[i]<<endl;
+}
+
+}
+    
+
+/*
+//output files
+ofstream y0("auslenkung0.txt");
+for (int k=0; k<30000; k++){
+    y0<<vy[k]<<endl;
+}
+ofstream y1("auslenkung00625.txt");
+for (int k=30000; k<60000; k++){
+    y1<<vy[k]<<endl;
+}
+ofstream y2("auslenkung0125.txt");    
+for (int k=60000; k<90000; k++){
+  y2<<vy[k]<<endl;
+}
+ofstream y3("auslenkung025.txt");  
+for (int k=90000; k<120000; k++){
+  y3<<vy[k]<<endl;
+}
+ofstream y4("auslenkung05.txt");
+for (int k=120000; k<150000; k++){
+  y4<<vy[k]<<endl;
+}
+ofstream y5("auslenkung075.txt"); 
+for (int k=150000; k<180000; k++){
+  y5<<vy[k]<<endl;
+}
+*/
+std::cout<<"pi="<<M_PI<<std::endl;
+std::cout<<"sin(pi/2)="<<sin(M_PI_2)<<std::endl;
+}
