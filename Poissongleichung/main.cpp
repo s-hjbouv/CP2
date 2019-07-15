@@ -3,11 +3,6 @@
 #include <fstream>
 #include <math.h>
 
-
-double epsi_0;
-double epsi_r;
-double rho_0;
-
 int main(){
 
 //Gittergröße definieren
@@ -29,7 +24,7 @@ for( int i = 0; i < Gitter.size(); i++){
   for( int j = 0; j < Gitter.size(); j++){
     for( int k = 0; k < Gitter.size(); k++){
        if(i == 0){
-       phi_alt[i][j][k] = 100;
+       phi_alt[i][j][k] = 1000;
        }
        else{
        phi_alt[i][j][k] = 0.0;
