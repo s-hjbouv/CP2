@@ -56,8 +56,9 @@ while (d>0.1){
     for( int j = 1; j < phi_neu.size()-1; j++ ){
       for( int k = 1;k < phi_neu.size()-1; k++ ){
       phi_neu[i][j][k] = (1.0/6.0)*(phi_alt[i+1][j][k]+phi_alt[i-1][j][k]+phi_alt[i][j+1][k]+phi_alt[i][j-1][k]+phi_alt[i][j][k+1]+phi_alt[i][j][k-1]-rho[i][j][k]);
+      // Differenz für Abbruchkriterium
       d = sqrt((phi_alt[i][j][k]-phi_neu[i][j][k])*(phi_alt[i][j][k]-phi_neu[i][j][k])); 
-      phi_alt[i][j][k] = phi_neu[i][j][k]; // Differenz für Abbruchkriterium
+      phi_alt[i][j][k] = phi_neu[i][j][k]; 
       }
     }
   }
@@ -118,7 +119,7 @@ while (b>0.1){
 for( int i = 1; i < phi_neu2.size()-1; i++){
     for( int j = 1; j < phi_neu2.size()-1; j++ ){
       for( int k = 1; k < phi_neu2.size()-1; k++ ){
-      phi_neu2[i][j][k] =pow(pow((1.0/6.0)*(phi_alt2[i+1][j][k]+phi_alt2[i-1][j][k]+phi_alt2[i][j+1][k]+phi_alt2[i][j-1][k]+phi_alt2[i][j][k+1]+phi_alt2[i][j][k-1]-rho[i][j][k]),2),0.5);
+      phi_neu2[i][j][k] =pow(pow((1.0/6.0)*(phi_alt2[i+1][j][k]+phi_alt2[i-1][j][k]+phi_alt2[i][j+1][k]+phi_alt2[i][j-1][k]+phi_alt2[i][j][k+1]+phi_alt2[i][j][k-1]+rho[i][j][k]),2),0.5);
       b = sqrt((phi_alt2[i][j][k]-phi_neu2[i][j][k])*(phi_alt2[i][j][k]-phi_neu2[i][j][k]));
       phi_alt2[i][j][k] = phi_neu2[i][j][k]; // Differenz für Abbruchkriterium    
       }

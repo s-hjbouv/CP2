@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named bin_Randomwalk
+# Target rules for targets named bin_abc
 
 # Build rule for target.
-bin_Randomwalk: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bin_Randomwalk
-.PHONY : bin_Randomwalk
+bin_abc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bin_abc
+.PHONY : bin_abc
 
 # fast build rule for target.
-bin_Randomwalk/fast:
-	$(MAKE) -f CMakeFiles/bin_Randomwalk.dir/build.make CMakeFiles/bin_Randomwalk.dir/build
-.PHONY : bin_Randomwalk/fast
+bin_abc/fast:
+	$(MAKE) -f CMakeFiles/bin_abc.dir/build.make CMakeFiles/bin_abc.dir/build
+.PHONY : bin_abc/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+abc.o: abc.cpp.o
+.PHONY : abc.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/bin_Randomwalk.dir/build.make CMakeFiles/bin_Randomwalk.dir/main.cpp.o
-.PHONY : main.cpp.o
+abc.cpp.o:
+	$(MAKE) -f CMakeFiles/bin_abc.dir/build.make CMakeFiles/bin_abc.dir/abc.cpp.o
+.PHONY : abc.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+abc.i: abc.cpp.i
+.PHONY : abc.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/bin_Randomwalk.dir/build.make CMakeFiles/bin_Randomwalk.dir/main.cpp.i
-.PHONY : main.cpp.i
+abc.cpp.i:
+	$(MAKE) -f CMakeFiles/bin_abc.dir/build.make CMakeFiles/bin_abc.dir/abc.cpp.i
+.PHONY : abc.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+abc.s: abc.cpp.s
+.PHONY : abc.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/bin_Randomwalk.dir/build.make CMakeFiles/bin_Randomwalk.dir/main.cpp.s
-.PHONY : main.cpp.s
+abc.cpp.s:
+	$(MAKE) -f CMakeFiles/bin_abc.dir/build.make CMakeFiles/bin_abc.dir/abc.cpp.s
+.PHONY : abc.cpp.s
 
 # Help Target
 help:
@@ -144,12 +144,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... bin_Randomwalk"
+	@echo "... bin_abc"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... abc.o"
+	@echo "... abc.i"
+	@echo "... abc.s"
 .PHONY : help
 
 
