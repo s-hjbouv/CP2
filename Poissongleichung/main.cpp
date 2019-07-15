@@ -11,12 +11,12 @@ double rho_0;
 int main(){
 
 //Gittergröße definieren
-std::array<std::array<std::array<double, 100>, 100>, 100> Gitter;
-std::array<std::array<std::array<double, 100>, 100>, 100> phi_alt;
-std::array<std::array<std::array<double, 100>, 100>, 100> phi_neu;
-std::array<std::array<std::array<double, 100>, 100>, 100> phi_alt2;
-std::array<std::array<std::array<double, 100>, 100>, 100> phi_neu2;
-std::array<std::array<std::array<double, 100>, 100>, 100> rho;
+std::array<std::array<std::array<double, 10>, 10>, 10> Gitter;
+std::array<std::array<std::array<double, 10>, 10>, 10> phi_alt;
+std::array<std::array<std::array<double, 10>, 10>, 10> phi_neu;
+std::array<std::array<std::array<double, 10>, 10>, 10> phi_alt2;
+std::array<std::array<std::array<double, 10>, 10>, 10> phi_neu2;
+std::array<std::array<std::array<double, 10>, 10>, 10> rho;
 
 ////////////////////////////////////////////////////////////////////////// 
 /////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ for( int i = 0; i < Gitter.size(); i++){
   for( int j = 0; j < Gitter.size(); j++){
     for( int k = 0; k < Gitter.size(); k++){
        if(i == 0){
-       phi_alt[i][j][k] = 1000;
+       phi_alt[i][j][k] = 100;
        }
        else{
        phi_alt[i][j][k] = 0.0;
@@ -69,7 +69,7 @@ std::ofstream output_pot0("Potential0.txt");
 for( int i = 0; i < phi_neu.size(); i++){
   //for( int j= 0; j < phi_neu.size(); j++ ){
     for( int k = 0; k < phi_neu.size(); k++ ){
-  output_pot0 << i << " " << k << " " << phi_neu[i][50][k] <<std::endl; 
+  output_pot0 << i << " " << k << " " << phi_neu[i][5][k] <<std::endl; 
     }
  // }
 }
@@ -84,10 +84,10 @@ for( int i = 0; i < phi_neu.size(); i++){
 for( int i = 0; i < Gitter.size(); i++){
    for( int j = 0; j < Gitter.size(); j++){
      for( int k = 0; k < Gitter.size(); k++){
-       if(i == 0){
-       phi_alt2[i][j][k] = 1000;
-       }
-       if( i == 50 && j == 50 && k == 50){
+//       if(i == 0){
+//       phi_alt2[i][j][k] = 1000;
+//       }
+       if( i == 5 && j == 5 && k == 5){
        phi_alt2[i][j][k] = 100;
        }
        else{
@@ -101,7 +101,7 @@ for( int i = 0; i < Gitter.size(); i++){
 for(int i = 0; i < Gitter.size(); i++){
  for(int j = 0; j < Gitter.size(); j++){
    for(int k= 0; k < Gitter.size(); k++){
-     if( i == 50 && j == 50 && k == 50){
+     if( i == 5 && j == 5 && k == 5){
      rho[i][j][k] = 100;
      }
      else{
