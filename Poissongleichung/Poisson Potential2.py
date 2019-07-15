@@ -21,7 +21,7 @@ y=np.arange(0,10,1)
 print(k)
 X,Y = np.meshgrid(x,y)
 plt.subplot(111)
-h=plt.contourf(X,Y,k,cmap='magma')
+h=plt.imshow(k,cmap='magma', interpolation = 'spline36')
 cbar=fig.colorbar(h)
 
 plt.show()
