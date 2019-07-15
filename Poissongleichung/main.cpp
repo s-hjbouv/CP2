@@ -11,12 +11,12 @@ double rho_0;
 int main(){
 
 //Gittergröße definieren
-std::array<std::array<std::array<double, 10>, 10>, 10> Gitter;
-std::array<std::array<std::array<double, 10>, 10>, 10> phi_alt;
-std::array<std::array<std::array<double, 10>, 10>, 10> phi_neu;
-std::array<std::array<std::array<double, 10>, 10>, 10> phi_alt2;
-std::array<std::array<std::array<double, 10>, 10>, 10> phi_neu2;
-std::array<std::array<std::array<double, 10>, 10>, 10> rho;
+std::array<std::array<std::array<double, 100>, 100>, 100> Gitter;
+std::array<std::array<std::array<double, 100>, 100>, 100> phi_alt;
+std::array<std::array<std::array<double, 100>, 100>, 100> phi_neu;
+std::array<std::array<std::array<double, 100>, 100>, 100> phi_alt2;
+std::array<std::array<std::array<double, 100>, 100>, 100> phi_neu2;
+std::array<std::array<std::array<double, 100>, 100>, 100> rho;
 
 ////////////////////////////////////////////////////////////////////////// 
 /////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ for( int i = 0; i < Gitter.size(); i++){
   for( int j = 0; j < Gitter.size(); j++){
     for( int k = 0; k < Gitter.size(); k++){
        if(i == 0){
-       phi_alt[i][j][k] = 10000;
+       phi_alt[i][j][k] = 1000;
        }
        else{
        phi_alt[i][j][k] = 0.0;
@@ -55,7 +55,7 @@ while (d>0.1){
   for( int i = 1; i < phi_neu.size()-1; i++){
     for( int j = 1; j < phi_neu.size()-1; j++ ){
       for( int k = 1;k < phi_neu.size()-1; k++ ){
-      phi_neu[i][j][k] = (1.0/6.0)*(phi_alt[i+1][j][k]+phi_alt[i-1][j][k]+phi_alt[i][j+1][k]+phi_alt[i][j-1][k]+phi_alt[i][j][k+1]+phi_alt[i][j][k-1]-rho[i][j][k]);
+      phi_neu[i][j][k] = (1.0/6.0)*(phi_alt[i+1][j][k]+phi_alt[i-1][j][k]+phi_alt[i][j+1][k]+phi_alt[i][j-1][k]+phi_alt[i][j][k+1]+phi_alt[i][j][k-1]+rho[i][j][k]);
       // Differenz für Abbruchkriterium
       d = sqrt((phi_alt[i][j][k]-phi_neu[i][j][k])*(phi_alt[i][j][k]-phi_neu[i][j][k])); 
       phi_alt[i][j][k] = phi_neu[i][j][k]; 
@@ -69,7 +69,7 @@ std::ofstream output_pot0("Potential0.txt");
 for( int i = 0; i < phi_neu.size(); i++){
   //for( int j= 0; j < phi_neu.size(); j++ ){
     for( int k = 0; k < phi_neu.size(); k++ ){
-  output_pot0 << i << " " << k << " " << phi_neu[i][5][k] <<std::endl; 
+  output_pot0 << i << " " << k << " " << phi_neu[i][50][k] <<std::endl; 
     }
  // }
 }
@@ -85,10 +85,10 @@ for( int i = 0; i < Gitter.size(); i++){
    for( int j = 0; j < Gitter.size(); j++){
      for( int k = 0; k < Gitter.size(); k++){
        if(i == 0){
-       phi_alt2[i][j][k] = 10000;
+       phi_alt2[i][j][k] = 1000;
        }
-       if( i == 5 && j == 5 && k == 5){
-       phi_alt2[i][j][k] = 10000;
+       if( i == 50 && j == 50 && k == 50){
+       phi_alt2[i][j][k] = 100;
        }
        else{
        phi_alt2[i][j][k] = 0.0; 
@@ -101,8 +101,8 @@ for( int i = 0; i < Gitter.size(); i++){
 for(int i = 0; i < Gitter.size(); i++){
  for(int j = 0; j < Gitter.size(); j++){
    for(int k= 0; k < Gitter.size(); k++){
-     if( i == 5 && j == 5 && k == 5){
-     rho[i][j][k] = 10000;
+     if( i == 50 && j == 50 && k == 50){
+     rho[i][j][k] = 100;
      }
      else{
      rho[i][j][k] = 0.0;
@@ -119,7 +119,7 @@ while (b>0.1){
 for( int i = 1; i < phi_neu2.size()-1; i++){
     for( int j = 1; j < phi_neu2.size()-1; j++ ){
       for( int k = 1; k < phi_neu2.size()-1; k++ ){
-      phi_neu2[i][j][k] =pow(pow((1.0/6.0)*(phi_alt2[i+1][j][k]+phi_alt2[i-1][j][k]+phi_alt2[i][j+1][k]+phi_alt2[i][j-1][k]+phi_alt2[i][j][k+1]+phi_alt2[i][j][k-1]-rho[i][j][k]),2),0.5);
+      phi_neu2[i][j][k] =(1.0/6.0)*(phi_alt2[i+1][j][k]+phi_alt2[i-1][j][k]+phi_alt2[i][j+1][k]+phi_alt2[i][j-1][k]+phi_alt2[i][j][k+1]+phi_alt2[i][j][k-1]+rho[i][j][k]);
       b = sqrt((phi_alt2[i][j][k]-phi_neu2[i][j][k])*(phi_alt2[i][j][k]-phi_neu2[i][j][k]));
       phi_alt2[i][j][k] = phi_neu2[i][j][k]; // Differenz für Abbruchkriterium    
       }
