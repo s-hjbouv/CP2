@@ -1,8 +1,0 @@
-\babel@toc {english}{}
-\beamer@sectionintoc {1}{Pendulum}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Pendulum - Approximation}{4}{0}{1}
-\beamer@sectionintoc {2}{The Runge-Kutta-Method}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{The Runge-Kutta-Nystr\IeC {\"o}m-Method}{6}{0}{2}
-\beamer@sectionintoc {3}{Our Program}{7}{0}{3}
-\beamer@sectionintoc {4}{Results}{8}{0}{4}
-\beamer@sectionintoc {5}{Sources}{11}{0}{5}
